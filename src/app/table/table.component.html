@@ -1,0 +1,32 @@
+<table class="like-table">
+  <thead class="like-table__head">
+    <tr>
+      <th scope="col">Suggestion</th>
+      <th scope="col">Likes</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of appData; let o=odd; let e=even" 
+        [ngClass]="{'light': e, 'dark':o}"
+        class="like-table__row">
+      <td>{{ data.message }}</td>
+      <td class="like-table__row--likes">{{ data.likes }}
+        <div (click)="addRemoveLikes(data.uuid, data.likes)">
+          <img src="../../assets/like.svg" alt="like" style="width: 25px">
+        </div>
+      </td>
+    </tr>
+    <tr class="like-table__form">
+      <td>
+        <input type="text"
+          placeholder="Please enter message"
+          class="like-table__form--input"
+          [(ngModel)]="singleMessage">
+      </td>
+      <td>
+        <button class="like-table__form--submit"
+        (click)="onClickAddMessage()">Add</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
